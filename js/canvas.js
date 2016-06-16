@@ -143,7 +143,7 @@ function fulcroDos()
 function palancaDosIzq()
 {
     contextDos.moveTo(350,215);
-    contextDos.moveTo(160,170);
+    contextDos.lineTo(160,170);
 
     contextDos.lineWidth=6;
 
