@@ -201,7 +201,9 @@ $(document).on("ready",function(){ //Cuando el documento esta ready osea cargado
                     palancaTresEquilibrio(); //Dibujo la palanca en equilibrio
                 }
                 scrollAlCanvasTres(); //mando el scroll hasta el canvas asi se ve el dibujo
-            
+                var potNecesaria = (r*br)/bp;
+
+                document.getElementById("pot-necesaria-tres").value=potNecesaria;
             
         }
 

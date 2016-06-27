@@ -202,7 +202,9 @@ $(document).on("ready",function(){ //Cuando el documento esta ready osea cargado
                 }
                 scrollAlCanvasDos(); //mando el scroll hasta el canvas asi se ve el dibujo
             
-            
+            var potNecesaria = (r*br)/bp;
+
+                document.getElementById("pot-necesaria-dos").value=potNecesaria;
         }
 
     });

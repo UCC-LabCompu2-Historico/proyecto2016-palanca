@@ -27,7 +27,10 @@ function fulcro()
     context.strokeStyle="black";
     context.stroke();
 
-
+    // INDICAMOS CUANTO VALE P Y R
+    context.font="30px Lato";
+    context.fillText("Potencia:"+document.getElementById("input-potencia-uno").value,50,50);
+    context.fillText("Resistencia:"+document.getElementById("input-resistencia-uno").value,50,100);
 }
 
 function palancaUnoEquilibrio()
@@ -39,34 +42,56 @@ function palancaUnoEquilibrio()
 
 function palancaUnoIzq()
 {
-    context.fillStyle="black";
-    context.beginPath();
+    
 
-    context.moveTo(155,240);
-    context.lineTo(355,210);
-    context.lineTo(350,200);
-    context.lineTo(150,230);
+    var a = 220;
+    var b = 220;
+
+    setInterval(function() {
+    borrarCanvas();
+    fulcro();
+    
+    
+   if(a<240 && b>200)
+    {
+       a++;
+       b--;
+    }
+    context.beginPath();
+    context.fillStyle="black";
+    context.lineWidth=12;
+    context.moveTo(160,a);
+    context.lineTo(340,b);
+    context.stroke();
 
     context.closePath();
-
-    context.fill();
-    context.stroke();
+    }, 2000 / 24); 
 }
 
 function palancaUnoDer()
 {
-    context.fillStyle="black";
-    context.beginPath();
+    var a = 210;
+    var b = 210;
 
-    context.moveTo(355,230);
-    context.lineTo(155,210);
-    context.lineTo(158,200);
-    context.lineTo(355,220);
+    setInterval(function() {
+    borrarCanvas();
+    fulcro();
     
-    context.closePath();
-
-    context.fill();
+    
+   if(a<250 && b>190)
+    {
+       a++;
+       b--;
+    }
+    context.beginPath();
+    context.fillStyle="black";
+    context.lineWidth=12;
+    context.moveTo(160,b);
+    context.lineTo(340,a);
     context.stroke();
+
+    context.closePath();
+    }, 2000 / 24); 
 }
 
 function flecha_pot()
@@ -139,24 +164,82 @@ function fulcroDos()
     contextDos.fill();
     contextDos.strokeStyle="black";
     contextDos.stroke();
+
+    // INDICAMOS CUANTO VALE P Y R
+    contextDos.font="30px Lato";
+    contextDos.fillText("Potencia:"+document.getElementById("input-potencia-dos").value,50,50);
+    contextDos.fillText("Resistencia:"+document.getElementById("input-resistencia-dos").value,50,100);
 }
 function palancaDosIzq()
 {
-    contextDos.moveTo(350,215);
+   /*contextDos.moveTo(350,215);
     contextDos.lineTo(160,170);
 
     contextDos.lineWidth=6;
 
     contextDos.stroke();
+
+    equilibrio:
+
+    contextDos.fillRect(160,210,180,10);
+*/
+    
+    var a = 210;
+    var b = 210;
+
+    setInterval(function() {
+    borrarCanvasDos();
+    fulcroDos();
+    
+    
+   if(a<235 && b>195)
+    {
+       a++;
+       b--;
+    }
+    contextDos.beginPath();
+    contextDos.fillStyle="black";
+    contextDos.lineWidth=12;
+    contextDos.moveTo(160,b);
+    contextDos.lineTo(350,a);
+    contextDos.stroke();
+
+    contextDos.closePath();
+    }, 2000 / 24); 
+
+
 }
 function palancaDosDer()
 {
-    contextDos.moveTo(345,210);
+   /* contextDos.moveTo(345,210);
     contextDos.lineTo(160,250);
 
     contextDos.lineWidth=6;
 
+    contextDos.stroke();*/
+
+    var a = 230;
+    var b = 215;
+
+    setInterval(function() {
+    borrarCanvasDos();
+    fulcroDos();
+    
+    
+   if(a<255 && b>210)
+    {
+       a++;
+       b--;
+    }
+    contextDos.beginPath();
+    contextDos.fillStyle="black";
+    contextDos.lineWidth=12;
+    contextDos.moveTo(160,a);
+    contextDos.lineTo(350,b);
     contextDos.stroke();
+
+    contextDos.closePath();
+    }, 2000 / 24); 
 }
 function palancaDosEquilibrio()
 {
@@ -230,6 +313,10 @@ function fulcroTres()
     contextTres.fill();
     contextTres.strokeStyle="black";
     contextTres.stroke();
+
+     contextTres.font="30px Lato";
+    contextTres.fillText("Potencia:"+document.getElementById("input-potencia-tres").value,50,50);
+    contextTres.fillText("Resistencia:"+document.getElementById("input-resistencia-tres").value,50,100);
 }
 function flecha_res_tres()
 {
@@ -274,21 +361,54 @@ function flecha_pot_tres()
 }
 function palancaTresDer()
 {
-    contextTres.moveTo(350,215);
-    contextTres.lineTo(160,170);
 
-    contextTres.lineWidth=6;
+    var a = 210;
+    var b = 210;
 
+    setInterval(function() {
+    borrarCanvasTres();
+    fulcroTres();
+    
+    
+   if(a<250 && b>200)
+    {
+       a++;
+       b--;
+    }
+    contextTres.beginPath();
+    contextTres.fillStyle="black";
+    contextTres.lineWidth=12;
+    contextTres.moveTo(160,b);
+    contextTres.lineTo(350,a);
     contextTres.stroke();
+
+    contextTres.closePath();
+    }, 2000 / 24); 
 }
 function palancaTresIzq()
 {
-    contextTres.moveTo(345,210);
-    contextTres.lineTo(160,250);
+    var a = 220;
+    var b = 230;
 
-    contextTres.lineWidth=6;
-
+    setInterval(function() {
+    borrarCanvasTres();
+    fulcroTres();
+    
+    
+   if(a<240 && b>210)
+    {
+       a++;
+       b--;
+    }
+    contextTres.beginPath();
+    contextTres.fillStyle="black";
+    contextTres.lineWidth=12;
+    contextTres.moveTo(160,a);
+    contextTres.lineTo(350,b);
     contextTres.stroke();
+
+    contextTres.closePath();
+    }, 1000 / 24); 
 }
 function palancaTresEquilibrio()
 {

@@ -35,6 +35,7 @@ var rangeBrUno;
 $(document).on("ready",function(){ //Cuando el documento esta ready osea cargado empieza esta funcion
 
     /* DIBUJO LA PALANCA */
+    
 
     fulcro();
     palancaUnoEquilibrio();
@@ -216,7 +217,9 @@ $(document).on("ready",function(){ //Cuando el documento esta ready osea cargado
                     palancaUnoEquilibrio(); //Dibujo la palanca en equilibrio
                 }
                 scrollAlCanvas(); //mando el scroll hasta el canvas asi se ve el dibujo
-            
+                var potNecesaria = (r*br)/bp;
+                document.getElementById("pot-necesaria-uno").value=potNecesaria;
+
             
         }
 
