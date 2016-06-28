@@ -2,7 +2,8 @@
 
 var myCanvas = document.getElementById("lienzo");
 var context = myCanvas.getContext("2d");
-
+var timer;
+var x,y;
 function borrarCanvas()
 {
     context.clearRect(0,0,500,300);
@@ -38,6 +39,8 @@ function palancaUnoEquilibrio()
     /*Aca dibujo el rectanculo que va arriba del trianguo*/
     context.fillStyle="black";
     context.fillRect(160,210,180,10);
+    flecha_pot();
+    flecha_res();
 }
 
 function palancaUnoIzq()
@@ -47,9 +50,10 @@ function palancaUnoIzq()
     var a = 220;
     var b = 220;
 
-    setInterval(function() {
+    timer = setInterval(function() {
     borrarCanvas();
     fulcro();
+
     
     
    if(a<240 && b>200)
@@ -57,8 +61,16 @@ function palancaUnoIzq()
        a++;
        b--;
     }
+    else
+    {
+        
+        clearInterval(timer);
+        flecha_pot_subida(-15);
+        flecha_res_subida(15);        
+    }
     context.beginPath();
     context.fillStyle="black";
+    context.strokeStyle="black";
     context.lineWidth=12;
     context.moveTo(160,a);
     context.lineTo(340,b);
@@ -66,6 +78,8 @@ function palancaUnoIzq()
 
     context.closePath();
     }, 2000 / 24); 
+
+
 }
 
 function palancaUnoDer()
@@ -73,7 +87,7 @@ function palancaUnoDer()
     var a = 210;
     var b = 210;
 
-    setInterval(function() {
+    timer = setInterval(function() {
     borrarCanvas();
     fulcro();
     
@@ -83,41 +97,57 @@ function palancaUnoDer()
        a++;
        b--;
     }
+    else
+    {
+         clearInterval(timer);
+         
+        flecha_pot_subida(20);
+        flecha_res_subida(-8);   
+    }
     context.beginPath();
     context.fillStyle="black";
+    context.strokeStyle="black";
     context.lineWidth=12;
     context.moveTo(160,b);
     context.lineTo(340,a);
     context.stroke();
-
+   
     context.closePath();
     }, 2000 / 24); 
 }
 
 function flecha_pot()
-{
+{    
+    /* Flecha de potencia */
+    context.beginPath();
     context.fillStyle="red";
     context.strokeStyle="red";
-    /* Flecha de potencia */
-
     context.fillRect(180,160,10,30);
-
-    context.beginPath();
     context.moveTo(170,190);
     context.lineTo(200,190);
     context.lineTo(185,210);
     context.lineTo(170,190);
-
     context.closePath();
-
     context.lineWidth=2;
-    context.fillStyle="red";
     context.fill();
-    context.strokeStyle="red";
     context.stroke();
-
 }
-
+function flecha_pot_subida(y)
+{    
+    /* Flecha de potencia */
+    context.beginPath();
+    context.fillStyle="red";
+    context.strokeStyle="red";
+    context.fillRect(180,160-y,10,30);
+    context.moveTo(170,190-y);
+    context.lineTo(200,190-y);
+    context.lineTo(185,210-y);
+    context.lineTo(170,190-y);
+    context.closePath();
+    context.lineWidth=2;
+    context.fill();
+    context.stroke();
+}
 function flecha_res()
 {
     context.fillStyle="blue";
@@ -138,7 +168,26 @@ function flecha_res()
     context.stroke();
 
 }
+function flecha_res_subida(y)
+{
+    context.fillStyle="blue";
+    context.strokeStyle="blue";
+    /* Flecha de resistencia */
+    context.beginPath();
+    context.fillRect(310,160-y,10,30);
+    context.moveTo(300,190-y);
+    context.lineTo(330,190-y);
+    context.lineTo(315,210-y);
+    context.lineTo(300,190-y);
+    context.closePath();
 
+    context.lineWidth=2;
+    context.fillStyle="blue";
+    context.fill();
+    context.strokeStyle="blue";
+    context.stroke();
+
+}
 
 /* DIBUJOS DEL CANVAS 2*/
 var myCanvasDos = document.getElementById("lienzoDos");
@@ -172,22 +221,11 @@ function fulcroDos()
 }
 function palancaDosIzq()
 {
-   /*contextDos.moveTo(350,215);
-    contextDos.lineTo(160,170);
-
-    contextDos.lineWidth=6;
-
-    contextDos.stroke();
-
-    equilibrio:
-
-    contextDos.fillRect(160,210,180,10);
-*/
     
     var a = 210;
     var b = 210;
 
-    setInterval(function() {
+    timer = setInterval(function() {
     borrarCanvasDos();
     fulcroDos();
     
@@ -197,8 +235,15 @@ function palancaDosIzq()
        a++;
        b--;
     }
+    else
+    {
+         clearInterval(timer);
+         flecha_pot_dos_subida(15);
+         flecha_res_dos_subida(0);
+    }
     contextDos.beginPath();
     contextDos.fillStyle="black";
+    contextDos.strokeStyle="black";
     contextDos.lineWidth=12;
     contextDos.moveTo(160,b);
     contextDos.lineTo(350,a);
@@ -211,17 +256,11 @@ function palancaDosIzq()
 }
 function palancaDosDer()
 {
-   /* contextDos.moveTo(345,210);
-    contextDos.lineTo(160,250);
-
-    contextDos.lineWidth=6;
-
-    contextDos.stroke();*/
 
     var a = 230;
     var b = 215;
 
-    setInterval(function() {
+    timer= setInterval(function() {
     borrarCanvasDos();
     fulcroDos();
     
@@ -231,8 +270,15 @@ function palancaDosDer()
        a++;
        b--;
     }
+    else
+    {
+         clearInterval(timer);
+         flecha_pot_dos_subida(-15);
+         flecha_res_dos_subida(0);
+    }
     contextDos.beginPath();
     contextDos.fillStyle="black";
+    contextDos.strokeStyle="black";
     contextDos.lineWidth=12;
     contextDos.moveTo(160,a);
     contextDos.lineTo(350,b);
@@ -246,6 +292,8 @@ function palancaDosEquilibrio()
     /*Aca dibujo el rectanculo que va arriba del trianguo*/
     contextDos.fillStyle="black";
     contextDos.fillRect(160,210,180,10);
+    flecha_pot_dos();
+    flecha_res_dos();
 }
 function flecha_pot_dos()
 {
@@ -269,7 +317,28 @@ function flecha_pot_dos()
     contextDos.strokeStyle="red";
     contextDos.stroke();
 }
+function flecha_pot_dos_subida(y)
+{
+    contextDos.fillStyle="red";
+    contextDos.strokeStyle="red";
+    /* Flecha de potencia */
 
+    contextDos.fillRect(180,180-y,10,30);
+
+    contextDos.beginPath();
+    contextDos.moveTo(170,180-y);
+    contextDos.lineTo(200,180-y);
+    contextDos.lineTo(185,160-y);
+    contextDos.lineTo(170,180-y);
+
+    contextDos.closePath();
+
+    contextDos.lineWidth=2;
+    contextDos.fillStyle="red";
+    contextDos.fill();
+    contextDos.strokeStyle="red";
+    contextDos.stroke();
+}
 function flecha_res_dos()
 {
     contextDos.fillStyle="blue";
@@ -281,6 +350,25 @@ function flecha_res_dos()
     contextDos.lineTo(310,190);
     contextDos.lineTo(295,210);
     contextDos.lineTo(280,190);
+    contextDos.closePath();
+
+    contextDos.lineWidth=2;
+    contextDos.fillStyle="blue";
+    contextDos.fill();
+    contextDos.strokeStyle="blue";
+    contextDos.stroke();
+}
+function flecha_res_dos_subida(y)
+{
+    contextDos.fillStyle="blue";
+    contextDos.strokeStyle="blue";
+    /* Flecha de resistencia */
+    contextDos.beginPath();
+    contextDos.fillRect(290,160-y,10,30);
+    contextDos.moveTo(280,190-y);
+    contextDos.lineTo(310,190-y);
+    contextDos.lineTo(295,210-y);
+    contextDos.lineTo(280,190-y);
     contextDos.closePath();
 
     contextDos.lineWidth=2;
@@ -314,7 +402,7 @@ function fulcroTres()
     contextTres.strokeStyle="black";
     contextTres.stroke();
 
-     contextTres.font="30px Lato";
+    contextTres.font="30px Lato";
     contextTres.fillText("Potencia:"+document.getElementById("input-potencia-tres").value,50,50);
     contextTres.fillText("Resistencia:"+document.getElementById("input-resistencia-tres").value,50,100);
 }
@@ -331,6 +419,28 @@ function flecha_res_tres()
     contextTres.lineTo(200,180);
     contextTres.lineTo(185,160);
     contextTres.lineTo(170,180);
+
+    contextTres.closePath();
+
+    contextTres.lineWidth=2;
+    contextTres.fillStyle="blue";
+    contextTres.fill();
+    contextTres.strokeStyle="blue";
+    contextTres.stroke();
+}
+function flecha_res_tres_subida(y)
+{
+    contextTres.fillStyle="blue";
+    contextTres.strokeStyle="blue";
+    /* Flecha de potencia */
+
+    contextTres.fillRect(180,180-y,10,30);
+
+    contextTres.beginPath();
+    contextTres.moveTo(170,180-y);
+    contextTres.lineTo(200,180-y);
+    contextTres.lineTo(185,160-y);
+    contextTres.lineTo(170,180-y);
 
     contextTres.closePath();
 
@@ -359,13 +469,32 @@ function flecha_pot_tres()
     contextTres.strokeStyle="red";
     contextTres.stroke();
 }
+function flecha_pot_tres_subida(y)
+{
+    contextTres.fillStyle="red";
+    contextTres.strokeStyle="red";
+    /* Flecha de resistencia */
+    contextTres.beginPath();
+    contextTres.fillRect(290,160-y,10,30);
+    contextTres.moveTo(280,190-y);
+    contextTres.lineTo(310,190-y);
+    contextTres.lineTo(295,210-y);
+    contextTres.lineTo(280,190-y);
+    contextTres.closePath();
+
+    contextTres.lineWidth=2;
+    contextTres.fillStyle="red";
+    contextTres.fill();
+    contextTres.strokeStyle="red";
+    contextTres.stroke();
+}
 function palancaTresDer()
 {
 
     var a = 210;
     var b = 210;
 
-    setInterval(function() {
+    timer = setInterval(function() {
     borrarCanvasTres();
     fulcroTres();
     
@@ -375,8 +504,15 @@ function palancaTresDer()
        a++;
        b--;
     }
+    else
+    {
+         clearInterval(timer);
+         flecha_res_tres_subida(10);
+         flecha_pot_tres_subida(3);
+    }
     contextTres.beginPath();
     contextTres.fillStyle="black";
+    contextTres.strokeStyle="black";
     contextTres.lineWidth=12;
     contextTres.moveTo(160,b);
     contextTres.lineTo(350,a);
@@ -390,7 +526,7 @@ function palancaTresIzq()
     var a = 220;
     var b = 230;
 
-    setInterval(function() {
+   timer = setInterval(function() {
     borrarCanvasTres();
     fulcroTres();
     
@@ -400,8 +536,15 @@ function palancaTresIzq()
        a++;
        b--;
     }
+    else
+    {
+         clearInterval(timer);
+         flecha_res_tres_subida(-20);
+         flecha_pot_tres_subida(0);
+    }
     contextTres.beginPath();
     contextTres.fillStyle="black";
+    contextTres.strokeStyle="black";
     contextTres.lineWidth=12;
     contextTres.moveTo(160,a);
     contextTres.lineTo(350,b);
@@ -415,6 +558,8 @@ function palancaTresEquilibrio()
     /*Aca dibujo el rectanculo que va arriba del trianguo*/
     contextTres.fillStyle="black";
     contextTres.fillRect(160,210,180,10);
+    flecha_pot_tres();
+    flecha_res_tres();
 }
 /*-------------------------FIN DIBUJO DE CANVAS------------------*/
 
